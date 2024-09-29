@@ -16,9 +16,31 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
     testImplementation 'com.codeborne:selenide:6.13.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.8.3'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    implementation 'org.apache.commons:commons-compress:1.26.0'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+        force 'io.netty:netty-handler:4.1.91.Final'
+        force 'com.google.guava:guava:31.1.1-jre'
+        force 'org.apache.commons:commons-compress:1.26.0'
+        force 'org.bouncycastle:bcprov-jdk15on:1.70'
+    }
 }
 
 test {
     useJUnitPlatform()
+
+    doFirst {
+        def wdm = io.github.bonigarcia.wdm.WebDriverManager.chromedriver()
+        wdm.setup()
+        systemProperty 'webdriver.chrome.driver', wdm.getDownloadedDriverPath()
+    }
+
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }

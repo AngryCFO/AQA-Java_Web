@@ -1,16 +1,23 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.Assertions;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CardOrderTest {
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+void setup() {
+    WebDriverManager.chromedriver().setup();
+    WebDriver driver = new ChromeDriver();
+}
+
+@Nested
+class CardOrderTest {
     @Test
     void shouldTestForm() {
         open("http://localhost:9999/");
@@ -91,4 +98,7 @@ public class CardOrderTest {
         $("[data-test-id=phone]").shouldHave(cssClass("input_invalid"));
         $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
+}
+
+public void main() {
 }
