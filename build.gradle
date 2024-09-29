@@ -21,13 +21,14 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
     implementation 'org.apache.commons:commons-compress:1.26.0'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+    implementation 'com.google.guava:guava:32.0.1-jre'
 }
 
 configurations.all {
     resolutionStrategy {
         force 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
         force 'io.netty:netty-handler:4.1.91.Final'
-        force 'com.google.guava:guava:31.1.1-jre'
+        force 'com.google.guava:guava:32.0.1-jre'
         force 'org.apache.commons:commons-compress:1.26.0'
         force 'org.bouncycastle:bcprov-jdk15on:1.70'
     }
