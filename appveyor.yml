@@ -11,14 +11,6 @@ build: off  # будем использовать свой скрипт сбор
 install:
   - java -jar ./artifacts/app-order.jar &
   - chmod +x gradlew
-  - sudo apt-get update
-  - sudo apt-get install -y google-chrome-stable
-  - export PATH="/opt/google/chrome:$PATH"
-  - wget https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip
-  - sudo mv chromedriver /usr/local/bin/
-  - export CHROME_BIN=/usr/bin/google-chrome
 
 build_script:
   - ./gradlew test -Dselenide.headless=true --info
-  - google-chrome --version
