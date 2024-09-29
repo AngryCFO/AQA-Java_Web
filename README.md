@@ -1,4 +1,4 @@
-
+[![Build status](https://ci.appveyor.com/api/projects/status/ec7ohy3ob4nh4pey/branch/main?svg=true)](https://ci.appveyor.com/project/AngryCFO/aqa-java-web/branch/main)
 
 # Домашнее задание к занятию «2.1. Тестирование веб-интерфейсов»
 
