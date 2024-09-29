@@ -26,11 +26,23 @@ dependencies {
 
 configurations.all {
     resolutionStrategy {
-        force 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
-        force 'io.netty:netty-handler:4.1.91.Final'
-        force 'com.google.guava:guava:32.0.1-jre'
-        force 'org.apache.commons:commons-compress:1.26.0'
-        force 'org.bouncycastle:bcprov-jdk15on:1.70'
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'com.fasterxml.jackson.core' && details.requested.name == 'jackson-databind') {
+                details.useVersion '2.15.3'
+            }
+            if (details.requested.group == 'io.netty' && details.requested.name == 'netty-handler') {
+                details.useVersion '4.1.91.Final'
+            }
+            if (details.requested.group == 'com.google.guava' && details.requested.name == 'guava') {
+                details.useVersion '32.0.1-jre'
+            }
+            if (details.requested.group == 'org.apache.commons' && details.requested.name == 'commons-compress') {
+                details.useVersion '1.26.0'
+            }
+            if (details.requested.group == 'org.bouncycastle' && details.requested.name == 'bcprov-jdk15on') {
+                details.useVersion '1.70'
+            }
+        }
     }
 }
 
@@ -44,4 +56,3 @@ test {
 
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
-
