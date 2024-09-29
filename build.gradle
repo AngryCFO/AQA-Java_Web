@@ -38,10 +38,10 @@ test {
     useJUnitPlatform()
 
     doFirst {
-        def wdm = io.github.bonigarcia.wdm.WebDriverManager.chromedriver()
-        wdm.setup()
-        systemProperty 'webdriver.chrome.driver', wdm.getDownloadedDriverPath()
+        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup()
+        systemProperty 'webdriver.chrome.driver', io.github.bonigarcia.wdm.WebDriverManager.chromedriver().getDownloadedDriverPath()
     }
 
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
+

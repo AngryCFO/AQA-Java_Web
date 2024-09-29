@@ -5,17 +5,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 @Nested
 class CardOrderTest {
@@ -25,6 +21,7 @@ class CardOrderTest {
     void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        setWebDriver(driver);
             }
 
     @AfterEach
