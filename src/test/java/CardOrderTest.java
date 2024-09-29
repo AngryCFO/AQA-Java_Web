@@ -1,6 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.AfterEach;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
@@ -81,5 +83,10 @@ public class CardOrderTest {
         fillForm("Иванова Татьяна", "", true);
         $("[data-test-id=phone]").shouldHave(cssClass("input_invalid"));
         $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        Selenide.closeWebDriver(); // Закрыть драйвер после каждого теста
     }
 }
