@@ -1,8 +1,8 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -17,17 +17,23 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 class CardOrderTest {
     private WebDriver driver;
 
+    // @BeforeAll
+   // public static void setUp() {
+   //     WebDriverManager.chromedriver().setup();
+   // }
+
     @BeforeEach
-    void setup() {
+    void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         setWebDriver(driver);
-            }
+    }
 
     @AfterEach
     void tearDown() {
         if (driver != null) {
-            driver.quit();
+            driver.quit(); // Закрыть браузер после каждого теста
+            setWebDriver(null); // Сбросить WebDriver
         }
     }
 
