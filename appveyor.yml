@@ -13,7 +13,8 @@ install:
   - chmod +x gradlew
   - sudo apt-get update
   - sudo apt-get install -y google-chrome-stable
-  - refreshenv
+  - export PATH="/opt/google/chrome:$PATH"
 
 build_script:
   - ./gradlew test -Dselenide.headless=true --info
+  - google-chrome --version
