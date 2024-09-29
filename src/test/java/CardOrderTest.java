@@ -1,44 +1,25 @@
-import com.codeborne.selenide.SelenideElement;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Nested;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.jupiter.api.BeforeAll;
+
+import javax.swing.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Nested
-class CardOrderTest {
-    private WebDriver driver;
-
-    // @BeforeAll
-   // public static void setUp() {
-   //     WebDriverManager.chromedriver().setup();
-   // }
-
-    @BeforeEach
-    void setUp() {
+public class CardOrderTest {
+    @BeforeAll
+    public static void setUpAll() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        setWebDriver(driver);
     }
-
-    @AfterEach
-    void tearDown() {
-        if (driver != null) {
-            driver.quit(); // Закрыть браузер после каждого теста
-            setWebDriver(null); // Сбросить WebDriver
-        }
-    }
-
     @Test
     void shouldTestForm() {
+        WebDriverManager.chromedriver().setup();
         open("http://localhost:9999/");
         SelenideElement form = $("form");
         $("[data-test-id=name] input").setValue("Иванова Татьяна");
@@ -118,4 +99,3 @@ class CardOrderTest {
         $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
 }
-

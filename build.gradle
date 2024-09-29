@@ -5,8 +5,7 @@ plugins {
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = '11'
-targetCompatibility = '11'
+sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
@@ -16,49 +15,11 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
-    testImplementation 'com.codeborne:selenide:6.10.1'
-    testImplementation 'org.seleniumhq.selenium:selenium-java:4.8.3'
+    testImplementation 'com.codeborne:selenide:6.13.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
-    implementation 'org.apache.commons:commons-compress:1.26.0'
-    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
-    implementation 'com.google.guava:guava:32.0.1-jre'
-}
-
-configurations.all {
-    resolutionStrategy {
-        eachDependency { DependencyResolveDetails details ->
-            // Установить версию для jackson-databind
-            if (details.requested.group == 'com.fasterxml.jackson.core' && details.requested.name == 'jackson-databind') {
-                details.useVersion '2.15.3'
-            }
-            // Установить версию для netty-handler
-            if (details.requested.group == 'io.netty' && details.requested.name == 'netty-handler') {
-                details.useVersion '4.1.91.Final'
-            }
-            // Установить версию для guava
-            if (details.requested.group == 'com.google.guava' && details.requested.name == 'guava') {
-                details.useVersion '32.0.1-jre'
-            }
-            // Установить версию для commons-compress
-            if (details.requested.group == 'org.apache.commons' && details.requested.name == 'commons-compress') {
-                details.useVersion '1.26.0'
-            }
-            // Установить версию для bcprov-jdk15on
-            if (details.requested.group == 'org.bouncycastle' && details.requested.name == 'bcprov-jdk15on') {
-                details.useVersion '1.70'
-            }
-        }
-    }
 }
 
 test {
     useJUnitPlatform()
-
-    doFirst {
-        WebDriverManager.chromedriver().setup()
-    }
-
-    systemProperty 'selenide.headless', System.getProperty('selenide.headless', 'true')
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
-
