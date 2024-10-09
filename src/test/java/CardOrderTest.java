@@ -14,10 +14,10 @@ public class CardOrderTest {
 
     private final String successMessage = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
 
-    @BeforeAll
-    static void setupAll() {
+    //@BeforeAll
+    //static void setupAll() {
       //  WebDriverManager.chromedriver().setup();
-    }
+   // }
 
     @BeforeEach
     void openForm() {
