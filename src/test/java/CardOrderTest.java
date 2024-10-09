@@ -36,53 +36,58 @@ public class CardOrderTest {
     @Test
     void shouldTestForm() {
         fillForm("Иванова Татьяна", "+79001234567", true);
-        $("[data-test-id=order-success]").shouldHave(exactText(successMessage));
+        $("[data-test-id=order-success]").shouldBe(visible).shouldHave(exactText(successMessage));
     }
 
     @Test
     void shouldTestFormDoubleName() {
         fillForm("Иванова-Петрова Татьяна", "+79001234567", true);
-        $("[data-test-id=order-success]").shouldHave(exactText(successMessage));
+        $("[data-test-id=order-success]").shouldBe(visible).shouldHave(exactText(successMessage));
     }
 
     @Test
     void shouldNotTestName() {
         fillForm("Ivanova Татьяна", "+79001234567", true);
-        $("[data-test-id=name]").shouldHave(cssClass("input_invalid"));
-        $("[data-test-id=name] .input__sub")
+       // $("[data-test-id=name]").shouldHave(cssClass("input_invalid"));
+       // $("[data-test-id=name] .input__sub")
+        $("[data-test-id='name'].input_invalid .input__sub")
                 .shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
     }
 
     @Test
     void shouldNotTestPhone() {
         fillForm("Иванова Татьяна", "791234567", true);
-        $("[data-test-id=phone]").shouldHave(cssClass("input_invalid"));
-        $("[data-test-id=phone] .input__sub")
+        //$("[data-test-id=phone]").shouldHave(cssClass("input_invalid"));
+        //$("[data-test-id=phone] .input__sub")
+        $("[data-test-id='phone'].input_invalid .input__sub")
                 .shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
 
     @Test
     void shouldNotTestAgreement() {
         fillForm("Иванова Татьяна", "+79001234567", false);
-        $("[data-test-id=agreement]").shouldHave(cssClass("input_invalid"));
+        //$("[data-test-id=agreement]").shouldHave(cssClass("input_invalid"));
+        $("[data-test-id=agreement].input_invalid").shouldBe(visible);
     }
 
     @Test
     void shouldNotTestEmptyName() {
         fillForm("", "+79001234567", true);
-        $("[data-test-id=name]").shouldHave(cssClass("input_invalid"));
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        //$("[data-test-id=name]").shouldHave(cssClass("input_invalid"));
+        //$("[data-test-id=name] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $("[data-test-id='name'].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
     @Test
     void shouldNotTestEmptyPhone() {
         fillForm("Иванова Татьяна", "", true);
-        $("[data-test-id=phone]").shouldHave(cssClass("input_invalid"));
-        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        //$("[data-test-id=phone]").shouldHave(cssClass("input_invalid"));
+        //$("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $("[data-test-id='phone'].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
-    @AfterEach
-    public void tearDown() {
-        Selenide.closeWebDriver(); // Закрыть драйвер после каждого теста
+   // @AfterEach
+   // public void tearDown() {
+   //     Selenide.closeWebDriver(); // Закрыть драйвер после каждого теста
     }
 }
