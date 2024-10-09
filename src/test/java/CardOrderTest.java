@@ -1,12 +1,11 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+//import io.github.bonigarcia.wdm.WebDriverManager;
+//import com.codeborne.selenide.Selenide;
+//import org.junit.jupiter.api.AfterEach;
+//import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.cssClass;
-import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -89,5 +88,5 @@ public class CardOrderTest {
    // @AfterEach
    // public void tearDown() {
    //     Selenide.closeWebDriver(); // Закрыть драйвер после каждого теста
-    }
+   // }
 }
