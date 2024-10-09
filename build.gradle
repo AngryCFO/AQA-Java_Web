@@ -22,7 +22,11 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    systemProperty 'selenide.headless', 'true' // Включить headless-режим
+    //systemProperty 'selenide.headless', 'true' // Включить headless-режим
     systemProperty 'selenide.start-maximized', 'true' // Максимизировать окно
-    systemProperty 'selenide.timeout', '10000' // Таймаут ожидания
+    //systemProperty 'selenide.timeout', '10000' // Таймаут ожидания
+    def selenideHeadless = System.getProperty('selenide.headless')
+    if (selenideHeadless != null) {
+        systemProperty 'selenide.headless', selenideHeadless
+    }
 }
